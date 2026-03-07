@@ -1,0 +1,18 @@
+args	"-F prime -c g.c -H g.h -uNUM --func-name ggo --show-required --default-optional --no-help --no-version -G"
+
+package "prime"
+version "1.0.0"
+
+description	"Check if NUMs are prime.\nIf no NUMs, read from standard input."
+
+section "Options"
+option	"loose-exit-status" l "Exit with 0 even if invalid input encountered"
+option	"repetitions" r "Perform secondary tests REPS times to avoid composites" int typestr="REPS" default="25"
+option	"quiet" q "Don't print TARGET before output"
+option	"silent" s "Don't print error messages"
+section	"Getting help"
+option	"help" h "Print this help message and exit"
+option	"version" v "Print version information and exit"
+text	"\nTry 'man fib' for more information."
+
+versiontext	"Copyright (C) 2026 Jack Renton Uteg.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Jack R. Uteg."
