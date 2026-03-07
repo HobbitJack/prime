@@ -42,6 +42,12 @@ main(int argc, char *argv[])
 		ggo_print_version();
 		return 0;
 	}
+
+	if (args.repetitions_arg < 0)
+	{
+		fprintf(stderr, "%s: %d: Bad number of repetitions\n", progname, args.repetitions_arg);
+		return 1;
+	}
 	
 	if (args.inputs_num)
 	{

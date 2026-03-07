@@ -1,56 +1,45 @@
-.TH FIB "1" "January 2026" "fib v4.1.1" "User Commands"
+.TH PRIME "1" "March 2026" "prime v1.0.0" "User Commands"
 .SH NAME
-fib \- compute Fibonacci numbers
+fib \- check for prime numbers
 .SH SYNOPSIS
 .SY
-.B fib
-[\fI\,OPTION\/\fR]... [\fI\,TARGET\/\fR]...
-.br
-.B fib
-\fB\-m\fR [\fI\,OPTION\/\fR]... [\fI\,TARGET\/\fR]...
+.B f
+[\fI\,OPTION\/\fR]... [\fI\,NUM\/\fR]...
 .YS
 .SH DESCRIPTION
-.B fib
-is a Fibonacci number calculator.
-Using binary expoentiation, it computes the \fITARGET\fRth Fibonacci number in O(log(N)), or when using the \fB\-p\fR flag it wil use the naive O(N) computation.
-With the \fB\-m\fR flag it computes the largest Fibonacci number less than \fITARGET\fR, also using the O(N) computation.
-This program defines the sequence such that F(0)=0, F(1)=1, F(2)=1, F(3)=2, and so on.
-.TP
-Output is given as 'TARGET: F(TARGET)\\n'.
-.TP
-If no \fITARGET\fRs are specified on the command line, read them from standard input.
+.B prime
+checks numbers for primality; that is, it checks if \fINUM\fR is prime.
+If \fINUM\fR is prime, it outputs 'prime', else 'composite.'
+.PP
+Note that the test used is probabalistic.
+That is, a number which is reported to be composite is definitely composite, but a number reported prime may be composite.
+At present, no known counterexamples exist for the test used, having been checked directly to 2^64.
+It is, however, expected that infinitely many counterexamples may exist.
+A secondary test is also performed; this test uses a series of repetitions (default 35) with different bases to provide more reason to be confident a number is indeed prime.
+.PP
+To be specific, the GNU MP `\fBmpz_probab_prime_p()\fR` function is used to check for probable primality.
+It first does trial division by small factors, and then performs the Baillie-PSW Probable Primality Test.
+Afterwards, it does Miller-Rabin probabalistic primality tests.
+.PP
+Output is given as 'NUM: isprime(NUM)\\n'.
+.PP
+If no \fINUM\fRs are specified on the command line, read them from standard input.
 .SH OPTIONS
 Mandatory options to long options are mandatory for short options too.
 .TP
-\fB\-b\fR, \fB\-\-base\fR=\fI\,BASE\/\fR
-Output numbers in base \fIBASE\fR.
-.I BASE
-may be any base supported by GNU MP.
-.br
-\- Bases [2, 36] use integers, then lower-case letters.
-.br
-\- Bases [-2, -36] use integers, then upper-case letters.
-.br
-\- Bases [37, 62] use integers, upper-case letters, then lower-case letters.
-.br
-Invalid bases will cause a fatal error.
 .TP
 \fB\-l\fR, \fB\-\-loose\-exit\fR
 Change the behavior of the exit status.
 Normally, the program will exit non-zero if any invalid input is provided.
 This flag will change the behavior such that the program will only exit non-zero if a fatal error is encountered.
 .TP
-\fB\-m\fR, \fB\-\-max\-value\fR
-Print largest Fibbonaci number less than \fITARGET\fR.
-This always uses the slower, naive O(N) algorithm.
-.TP
-\fB\-p\fR, \fB\-\-print\-all\fR
-Print the whole Fibonacci sequence up to \fITARGET\fR.
-This always uses the slower, naive O(N) algorithm.
-This disables printing TARGET, even when \fB\-\-quiet\fR is not passed.
+\fB\-r\fR, \fB\-\-repetitions\fR=\fI\,REPS\/\fR
+Perform \fIREPS\fR repetitions of Miller-Rabin probabalistic primality tests.
+Reasonable values are on the order of 15-50, though for numbers less than 2^64 (18446744073709551616), none may be used.
+The asymptotic probability of a composite number passing this test is 1/(4^\fIREPS\fR).
 .TP
 \fB\-q\fR, \fB\-\-quiet\fR
-Disable the printing of \fITARGET\fR with the computed number.
+Disable the printing of \fINUM\fR with the computed number.
 This is probably more useful for scripts, but really probably is never going to be used.
 .TP
 \fB\-s\fR, \fB\-\-silent\fR
@@ -72,4 +61,4 @@ This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 .SH SEE ALSO
 .TP
-\fBcollatz(1)\fR, \fBfactor(1)\fR, \fBpoly(1)\fR
+\fBcollatz(1)\fR, \fBfib(1)\fR, \fBfactor(1)\fR, \fBpoly(1)\fR
