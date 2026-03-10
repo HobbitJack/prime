@@ -68,7 +68,9 @@ main(int argc, char *argv[])
 				fputs(": ", stdout);
 			}
 
-			if (isprime(target))
+			if (!mpz_cmp_si(target, 1))
+				puts("unit");
+			else if (isprime(target))
 				puts("prime");
 			else
 				puts("composite");
@@ -93,8 +95,10 @@ main(int argc, char *argv[])
 				mpz_out_str(NULL, 10, target);
 				fputs(": ", stdout);
 			}
-			
-			if (isprime(target))
+
+			if (!mpz_cmp_si(target, 1))
+				puts("unit");
+			else if (isprime(target))
 				puts("prime");
 			else
 				puts("composite");
