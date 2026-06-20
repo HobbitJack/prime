@@ -1,13 +1,13 @@
 args	"-F prime -c g.c -H g.h -uNUM --func-name ggo --show-required --default-optional --no-help --no-version -G"
 
 package "prime"
-version "1.0.0"
+version "1.0.1"
 
 description	"Check if NUMs are prime.\nIf no NUMs, read from standard input."
 
 section "Options"
 option	"loose-exit-status" l "Exit with 0 even if invalid input encountered"
-option	"repetitions" r "Perform secondary tests REPS times" int typestr="REPS" default="25"
+option	"repetitions" r "Perform secondary tests REPS times" int typestr="REPS" default="0"
 option	"quiet" q "Don't print TARGET before output"
 option	"silent" s "Don't print error messages"
 section	"Getting help"

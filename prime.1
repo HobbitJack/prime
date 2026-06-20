@@ -1,4 +1,4 @@
-.TH PRIME "1" "June 2026" "prime v1.0.0" "User Commands"
+.TH PRIME "1" "June 2026" "prime v1.0.1" "User Commands"
 .SH NAME
 prime \- check for prime numbers
 .SH SYNOPSIS
@@ -15,7 +15,8 @@ Note that the test used is probabalistic.
 That is, a number which is reported to be composite is definitely composite, but a number reported prime may be composite.
 At present, no known counterexamples exist for the test used, having been checked directly to 2^64.
 It is, however, expected that infinitely many counterexamples may exist.
-A secondary test is also performed; this test uses a series of repetitions (default 35) with different bases to provide more reason to be confident a number is indeed prime.
+A secondary test is also optionally performed; this test uses a series of repetitions with different bases to provide more reason to be confident a number is indeed prime.
+The \fB-r\fR flag controls the number of repetitions used.
 .PP
 To be specific, the GNU MP `\fBmpz_probab_prime_p()\fR` function is used to check for probable primality.
 It first does trial division by small factors, and then performs the Baillie-PSW Probable Primality Test.
@@ -61,4 +62,4 @@ This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 .SH SEE ALSO
 .TP
-\fBcollatz(1)\fR, \fBfib(1)\fR, \fBfactor(1)\fR, \fBpoly(1)\fR
+\fBbaseconv(1)\fR, \fBcollatz(1)\fR, \fBfib(1)\fR, \fBfactor(1)\fR, \fBpoly(1)\fR
