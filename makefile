@@ -22,13 +22,13 @@ clean:
 
 source:
 	rm -f prime_source.tar.gz
-	tar -cf prime_source.tar prime.c prime.g prime.l prime.1 makefile
+	tar -cf prime_source.tar prime.c prime.g prime.l prime.1 makefile COPYING
 	gzip prime_source.tar
 
 release:	prime
 	rm -f prime.tar.gz
 	sed 6,33d makefile | sed '2c .PHONY:	install uninstall'> Makefile
-	tar -cf prime.tar prime prime.c prime.g prime.l prime.1 Makefile
+	tar -cf prime.tar prime prime.c prime.g prime.l prime.1 Makefile COPYING
 	gzip prime.tar
 
 install:	prime
